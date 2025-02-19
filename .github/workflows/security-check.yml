@@ -28,7 +28,7 @@ jobs:
       - name: Run Dependency Security Check
         run: npx audit-ci --low
 
-      - name: Run Docker Security Scan
-        uses: anchore/grype-action@v0.4.2
-        with:
-          image: "node:14-alpine"
+      - name: Run Docker Security Scan with Grype
+        run: |
+          docker pull node:14-alpine
+          docker run --rm anchore/grype node:14-alpine
